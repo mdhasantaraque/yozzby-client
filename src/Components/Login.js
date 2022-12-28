@@ -74,7 +74,7 @@ const Login = () => {
           </div>
           <input
             className="btn bg-gradient-to-r from-cyan-600 to-blue-600 border-blue-400 w-full mt-4 hover:bg-blue-400"
-            value="Sign Up"
+            value="Login"
             type="submit"
           />
           <div>

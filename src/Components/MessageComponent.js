@@ -17,6 +17,7 @@ const MessageComponent = () => {
       event.preventDefault();
       const form = event.target;
       // const email = user?.email || "unregistered";
+      const name = user.displayName;
       const text = form.message.value;
       const email = user?.email || "unregistered";
       const image = form.image.files[0] || "no images";
@@ -37,6 +38,7 @@ const MessageComponent = () => {
               text,
               image: imgData.data.url,
               email,
+              name,
             };
             fetch("http://localhost:5000/messageCollection", {
               method: "POST",
@@ -64,7 +66,7 @@ const MessageComponent = () => {
               <img src="https://placeimg.com/192/192/people" />
             </div>
           </div>
-          <h2 className="card-title">Name</h2>
+          <h2 className="card-title">{user ? user.displayName : "Name"}</h2>
         </div>
         <form
           onSubmit={handleMessage}
@@ -72,7 +74,9 @@ const MessageComponent = () => {
         >
           <div className="form-control">
             <label className="block">
-              <span className="mb-1 font-bold">Whats on your mind?</span>
+              <span className="mb-1 font-bold text-gray-400">
+                Whats on your mind?
+              </span>
               <textarea
                 rows="5"
                 name="message"

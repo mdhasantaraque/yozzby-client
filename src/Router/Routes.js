@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import EditModal from "../Components/EditModal";
 import Home from "../Components/Home";
 import Login from "../Components/Login";
+import Media from "../Components/Media";
 import SignUp from "../Components/SignUp";
 import Main from "../Layout/Main";
+import Error from "../Share/Error";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,15 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
+      {
+        path: "/media",
+        element: <Media></Media>,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <Error></Error>,
   },
 ]);
 export default router;

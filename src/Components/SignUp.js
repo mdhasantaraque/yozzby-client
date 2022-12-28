@@ -23,19 +23,21 @@ const SignUp = () => {
   // SignUp;
 
   const handleSignUp = (data) => {
-    createUser(data.email, data.password);
-    setSignUPError("")
+    setSignUPError("");
+    createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        toast.success("successfully Sign Up");
+        // console.log(user);
+
         navigate(from, { replace: true });
         const userInfo = {
           displayName: data.name,
         };
+        // console.log(userInfo);
         updateUser(userInfo)
           .then(() => {
             // saveUser(data.name, data.email);
+            toast.success("successfully Sign Up");
           })
           .catch((err) => console.log(err));
       })
