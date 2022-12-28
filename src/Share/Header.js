@@ -13,6 +13,9 @@ const Header = () => {
   const allMenu = (
     <>
       <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
         <Link to="/media">Media</Link>
       </li>
       <li>
