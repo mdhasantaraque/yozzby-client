@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthProvider";
+import logo from "../images/eg-1.png";
 
 const MessageComponent = () => {
   const { user } = useContext(AuthContext);
@@ -64,7 +65,7 @@ const MessageComponent = () => {
         <div className="flex ">
           <div className="avatar mr-4">
             <div className="w-12 rounded-full">
-              <img src="https://placeimg.com/192/192/people" alt="" />
+              <img src={logo} alt="" />
             </div>
           </div>
           <h2 className="card-title">{user ? user.displayName : "Name"}</h2>
