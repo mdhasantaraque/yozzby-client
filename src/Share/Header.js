@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
+import logo from "../images/eg-1.png";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,6 +22,9 @@ const Header = () => {
       </li>
       <li>
         <Link to="/message">Message</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
       </li>
 
       {user?.uid ? (
@@ -72,9 +77,10 @@ const Header = () => {
       <div className="navbar-center text-white hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{allMenu}</ul>
       </div>
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+
+      <label className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img src="https://placeimg.com/80/80/people" />
+          <img src={logo} alt="" />
         </div>
       </label>
     </div>

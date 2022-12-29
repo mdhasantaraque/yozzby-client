@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthProvider";
 
@@ -7,7 +6,7 @@ const MessageComponent = () => {
   const { user } = useContext(AuthContext);
   // const { register, handleSubmit } = useForm();
   const imageHostKey = process.env.REACT_APP_imgbb_key;
-  console.log(imageHostKey);
+  // console.log(imageHostKey);
 
   const handleMessage = (event) => {
     if (!user) {
@@ -19,6 +18,7 @@ const MessageComponent = () => {
       // const email = user?.email || "unregistered";
       const name = user.displayName;
       const text = form.message.value;
+      const userImage = user?.photoURL || "null";
       const email = user?.email || "unregistered";
       const image = form.image.files[0] || "no images";
       // console.log(image);
@@ -39,8 +39,9 @@ const MessageComponent = () => {
               image: imgData.data.url,
               email,
               name,
+              userImage,
             };
-            fetch("http://localhost:5000/messageCollection", {
+            fetch(`${process.env.REACT_APP_API_URL}/messageCollection`, {
               method: "POST",
               headers: { "content-type": "application/json" },
               body: JSON.stringify(userMessage),
@@ -63,7 +64,7 @@ const MessageComponent = () => {
         <div className="flex ">
           <div className="avatar mr-4">
             <div className="w-12 rounded-full">
-              <img src="https://placeimg.com/192/192/people" />
+              <img src="https://placeimg.com/192/192/people" alt="" />
             </div>
           </div>
           <h2 className="card-title">{user ? user.displayName : "Name"}</h2>

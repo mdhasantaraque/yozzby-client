@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthProvider";
+import GoogleSignIn from "../Share/GoogleSignIn";
 
 const SignUp = () => {
   // Private route hook
@@ -114,9 +115,7 @@ const SignUp = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline border-blue-700 w-full hover:bg-gradient-to-r from-cyan-600 to-blue-600">
-          CONTINUE WITH GOOGLE
-        </button>
+        <GoogleSignIn></GoogleSignIn>
       </div>
     </div>
   );

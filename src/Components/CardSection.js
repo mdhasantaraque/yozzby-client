@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthProvider";
-import MediaCard from "./MediaCard";
+import CardSectionCard from "./CardSectionCard";
 
-const Media = () => {
+const CardSection = () => {
   const { user } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   console.log(messages);
@@ -16,13 +14,14 @@ const Media = () => {
       .then((data) => setMessages(data));
   }, []);
 
+  const threeMessages = messages.slice(0, 3);
   return (
     <div>
-      {messages.map((message) => (
-        <MediaCard key={message._id} message={message}></MediaCard>
+      {threeMessages.map((message) => (
+        <CardSectionCard key={message._id} message={message}></CardSectionCard>
       ))}
     </div>
   );
 };
 
-export default Media;
+export default CardSection;
