@@ -7,6 +7,7 @@ import MessageDetails from "../Components/MessageDetails";
 import SignUp from "../Components/SignUp";
 import Main from "../Layout/Main";
 import Error from "../Share/Error";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/messageDetails/:id",
-        element: <MessageDetails></MessageDetails>,
+        element: (
+          <PrivateRoute>
+            <MessageDetails></MessageDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/messageDetails/${params.id}`),
       },
