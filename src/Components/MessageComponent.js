@@ -22,6 +22,7 @@ const MessageComponent = () => {
       const userImage = user?.photoURL || "null";
       const email = user?.email || "unregistered";
       const image = form.image.files[0] || "no images";
+      const like = "10";
       // console.log(image);
       const formData = new FormData();
       formData.append("image", image);
@@ -41,6 +42,7 @@ const MessageComponent = () => {
               email,
               name,
               userImage,
+              like,
             };
             fetch(`${process.env.REACT_APP_API_URL}/messageCollection`, {
               method: "POST",
