@@ -3,8 +3,17 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const MessageDetails = () => {
   const { image, name, text, _id, like } = useLoaderData();
+
+  // for like-----
   const [pageLike, setPageLike] = useState(like);
   const [likeActive, setLikeActive] = useState(false);
+
+  // for comment-----
+
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+
+  // handle Like--------
   const handleLike = (_id) => {
     const pageLikeParse = parseInt(pageLike);
     if (likeActive) {
@@ -14,6 +23,15 @@ const MessageDetails = () => {
       setLikeActive(true);
       setPageLike(pageLikeParse + 1);
     }
+  };
+  // handle comment-----
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    setComments((comments) => [...comments, comment]);
+  };
+  const onChangeHandler = (e) => {
+    e.preventDefault();
+    setComment(e.target.value);
   };
 
   return (
@@ -95,7 +113,34 @@ const MessageDetails = () => {
               </button>
             </div>
           </div>
+          <p>All Comments</p>
+          {comments.map((text) => (
+            <div className="comment-container my-2 block w-full p-1 rounded-md focus:ring focus:ring-opacity-75 focus:ring-gray-400 dark:bg-gray-100">
+              {text}
+            </div>
+          ))}
         </div>
+        <form className="flex flex-col py-6 space-y-6 md:py-0 md:px-6 ng-untouched ng-pristine ng-valid">
+          <label className="block">
+            <span className="mb-1">Comment</span>
+            <textarea
+              value={comment}
+              name="message"
+              onChange={onChangeHandler}
+              rows="1"
+              className="block w-full p-4 rounded-md focus:ring focus:ring-opacity-75 focus:ring-gray-400 dark:bg-gray-100"
+            ></textarea>
+          </label>
+          <div className="flex flex-wrap justify-center">
+            <button
+              onClick={onClickHandler}
+              type="submit"
+              className="btn  btn-info mb-4"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
